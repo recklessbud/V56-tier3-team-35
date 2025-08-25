@@ -47,6 +47,7 @@ export const Logout = async() => {
             },
           }
         );
+        console.log(response.data)
         localStorage.removeItem('token');
     } catch (error) {
         console.log(error);
