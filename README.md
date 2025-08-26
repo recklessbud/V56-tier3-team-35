@@ -64,3 +64,4 @@ Builds the project and starts the production server.
 - Niamh Brown: [GitHub](https://github.com/NiamhBrown) / [LinkedIn](https://www.linkedin.com/in/niamh-brown1/)
 - Venkata Santhosh: [GitHub](https://github.com/BVSanthosh) / [LinkedIn](https://www.linkedin.com/in/venkata-santhosh-basina/)
 - Nsowah Alexander: [GitHub](https://github.com/recklessbud) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Evaristo Caraballo: [GitHub](https://github.com/evaristoc)
