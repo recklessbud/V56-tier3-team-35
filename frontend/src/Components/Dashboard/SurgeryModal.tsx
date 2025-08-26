@@ -41,9 +41,8 @@ export const SurgeryModal = ({
     surgeon: "",
     room: "OR-1",
     duration: "",
-    status: "scheduled"
+    status: "scheduled",
   });
-
 
   const createNewPatientMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
@@ -87,12 +86,15 @@ export const SurgeryModal = ({
       toast.error(`Validation failed: ${errorMessages}`);
       return;
     }
-    let last = parseInt(localStorage.getItem("lastPatientNumber") || "0", 10);
-        last += 1;
-    localStorage.setItem("lastPatientNumber", last.toString());
+    const phoneRegex =
+      // eslint-disable-next-line no-useless-escape
+      /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    if (!phoneRegex.test(formData.phone_number)) {
+      toast.error("Invalid phone number format.");
+      return;
+    }
+    const patientNumber = Math.floor(1000 + Math.random() * 9000).toString();
 
-    const patientNumber = `P#${String(last).padStart(3, "0")}`;
-    console.log(patientNumber)
     const newPatient = {
       ...formData,
       patient_number: patientNumber,
@@ -351,7 +353,7 @@ export const SurgeryModal = ({
                   name="phone_number"
                   required
                   variant="outlined"
-                  placeholder="eg; 123-456-7890"
+                  placeholder="1234567890"
                   value={formData.phone_number}
                   slotProps={{
                     input: {

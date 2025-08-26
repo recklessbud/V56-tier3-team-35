@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -19,6 +20,8 @@ import { loginUser } from '../api/auth.api'
 // import AppTheme from "../shared-theme/AppTheme";
 import AppTheme from "../theme/AppTheme";
 import { Heart } from "lucide-react";
+import { IconButton, Snackbar } from "@mui/material";
+import { Close } from "@mui/icons-material";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -65,6 +68,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 export default function Login(props: { disableCustomTheme?: boolean }) {
   const [emailError, setEmailError] = React.useState(false);
   const [email, setEmail] = React.useState('')
+  const [showTestAccounts, setShowTestAccounts] = React.useState(true);
   const [password, setPassword] = React.useState('')
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -77,9 +81,7 @@ export default function Login(props: { disableCustomTheme?: boolean }) {
 
   const loginMutation = useMutation({
     mutationFn: () => loginUser(email, password),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-    onSuccess: (data: any) => {
-        // console.log(data)  
+    onSuccess: (data: any) => { 
         toast.success("Login Successful")
         setEmail("");
         setPassword("");
@@ -91,8 +93,6 @@ export default function Login(props: { disableCustomTheme?: boolean }) {
         }
   
     },
-
-    // amazonq-ignore-next-line
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
         const message = error?.response?.data?.message || "Could not Login User.. Invalid Credentials";
@@ -139,6 +139,44 @@ export default function Login(props: { disableCustomTheme?: boolean }) {
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={showTestAccounts}
+        onClose={() => setShowTestAccounts(false)}
+        message={
+          <Box>
+            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+              Test Admin Account
+            </Typography>
+            <Typography variant="body2">
+              <strong>Email:</strong> bureck400@gmail.com
+              <br />
+              <strong>Password:</strong> dummyPassword124
+            </Typography>
+          </Box>
+        }
+        action={
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={() => setShowTestAccounts(false)}
+          >
+            <Close fontSize="small" />
+          </IconButton>
+        }
+        sx={{
+          mt: 2,
+          mr: 2,
+          maxWidth: 320,
+          "& .MuiSnackbarContent-root": {
+            background: "#f5f5f5",
+            color: "#222",
+            border: "1px solid #1da1f2",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+          },
+        }}
+      />
       <SignInContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
           <div className="flex  text-blue-400  gap-3 ">
@@ -215,7 +253,7 @@ export default function Login(props: { disableCustomTheme?: boolean }) {
               fullWidth
               disabled={isLoading}
               variant="contained"
-              sx={{backgroundColor: "#1da1f2 !important", color: "white"}}
+              sx={{ backgroundColor: "#1da1f2 !important", color: "white" }}
             >
               {isLoading ? (
                 <Box sx={{ display: "flex", alignItems: "center" }}>

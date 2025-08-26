@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios, { AxiosResponse } from "axios"
 
 axios.defaults.withCredentials = true
@@ -37,7 +38,7 @@ export const checkAuth = async() => {
 export const Logout = async() => {
     const token = localStorage.getItem('token');
     try {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
         const response: AxiosResponse<unknown> = await axios.post(
           `${BACKEND_URL}/api/auth/logout`,
           null,

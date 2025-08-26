@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../utils/cssFiles/landingPage.css'
-import { Badge, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, useMediaQuery } from '@mui/material';
-import {Clock, Heart} from 'lucide-react';
+import { Badge, Card, CardContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, useMediaQuery } from '@mui/material';
+import {Clock, Heart, User} from 'lucide-react';
 import { MobileView } from './MobileView';
 import { useQuery } from '@tanstack/react-query';
 import { getAllPatients } from '../../api/patient.api';
@@ -91,10 +91,19 @@ export const WaitingRoom = () => {
     return <div>Loading...</div>;
   }
 
-  if (fetchData.isError) {
-    return <div>Error loading data</div>;
+  
+  if(fetchData.isError || activeSurgeries.length === 0){ 
+    return <div className='flex justify-center items-center min-h-screen bg-gradient-subtle p-4 sm:p-6'>
+          <Card className="border-2 ">
+            <CardContent className="p-6 text-center">
+              <User className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+                <p className="text-black">
+                     No active surgeries today.
+                </p>
+            </CardContent>
+          </Card>
+        </div>
   }
-
   if (isMobile) {
     return <MobileView />;
   }

@@ -26,7 +26,6 @@ import { Patient } from "../../types/types";
 
 export const SurgeryDashboard = () => {
    const [currentPage, setCurrentPage] = React.useState(1);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentTime, setCurrentTime] = React.useState<Date>(new Date());
   const [searchTerm, setSearchTerm] = React.useState<string>("");
   const [statusFilter, setStatusFilter] = React.useState<string>("all");
