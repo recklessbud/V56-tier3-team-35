@@ -1,6 +1,6 @@
 ## Project info
 
-**URL**: [Surgery Update Board](https://v56-tier3-team-35-hne8.vercel.app)
+**URL**: [Surgery Update Board](https://v56-tier3-team-35.vercel.app)
 
 **Key Features**:
 - Real-time surgery status updates
@@ -117,3 +117,4 @@ Builds the project and starts the production server.
 - Venkata Santhosh: [GitHub](https://github.com/BVSanthosh) / [LinkedIn](https://www.linkedin.com/in/venkata-santhosh-basina/)
 - Nsowah Alexander: [GitHub](https://github.com/recklessbud) / [LinkedIn](https://linkedin.com/in/liaccountname)
 - Evaristo Caraballo: [GitHub](https://github.com/evaristoc)
+
